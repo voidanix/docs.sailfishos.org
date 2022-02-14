@@ -21,8 +21,10 @@ sudo mkdir -p $PLATFORM_SDK_ROOT/sdks/sfossdk
 sudo tar --numeric-owner -p -xjf Jolla-latest-SailfishOS_Platform_SDK_Chroot-i486.tar.bz2 -C $PLATFORM_SDK_ROOT/sdks/sfossdk
 echo "export PLATFORM_SDK_ROOT=$PLATFORM_SDK_ROOT" >> ~/.bashrc
 echo 'alias sfossdk=$PLATFORM_SDK_ROOT/sdks/sfossdk/sdk-chroot' >> ~/.bashrc; exec bash
-echo 'PS1="PlatformSDK $PS1"' > ~/.mersdk.profile
-echo '[ -d /etc/bash_completion.d ] && for i in /etc/bash_completion.d/*;do . $i;done' >> ~/.mersdk.profile
+echo 'if [[ $SAILFISH_SDK ]]; then' >> ~/.bash_profile
+echo '  PS1="PlatformSDK $PS1"' >> ~/.bash_profile
+echo '  [ -d /etc/bash_completion.d ] && for i in /etc/bash_completion.d/*;do . $i;done' >> ~/.bash_profile
+echo 'fi' >> ~/.bash_profile
 sfossdk
 ```
 
@@ -104,15 +106,17 @@ As mentioned, the Platform SDK is location independent so it uses the location o
 
 ## Entering Platform SDK
 
-Before entering the Platform SDK you may want to make an Platform SDK equivalent of ".profile" to give you a nice prompt to remind you that you are in the Platform SDK. This also reads the bash autocompletion scripts from inside the chroot.
+Before entering the Platform SDK you may want to make changes to your ".bash_profile" file to give you a nice prompt to remind you that you are in the Platform SDK. This also reads the bash autocompletion scripts from inside the chroot.
 ```nosh
-cat << EOF >> ~/.mersdk.profile
-PS1="PlatformSDK \$PS1"
-if [ -d /etc/bash_completion.d ]; then
-   for i in /etc/bash_completion.d/*;
-   do
+cat << EOF >> ~/.bash_profile
+if [[ $SAILFISH_SDK ]]; then
+  PS1="PlatformSDK \$PS1"
+  if [ -d /etc/bash_completion.d ]; then
+    for i in /etc/bash_completion.d/*;
+    do
       . \$i
-   done
+    done
+  fi
 fi
 EOF
 ```
