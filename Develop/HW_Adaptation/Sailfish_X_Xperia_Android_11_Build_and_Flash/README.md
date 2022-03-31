@@ -12,7 +12,17 @@ Here you will find instructions how to build Sailfish OS image and flash it to S
 
 ## ChangeLog
 
-  - 2021-12-13: Published as technical guidance for Android 11 64bit ARM adaptations
+  - 2022-01-24: Published as technical guidance for Android 11 64bit ARM adaptations
+  - 2022-01-27: Improve syspart as a contained build, update known issues
+  - 2022-02-07: Fix build on 4.3.0
+  - 2022-02-09: Clarify build instructions for setting up repo, ignore erros when applying patches to droid-system
+  - 2022-02-10: Adding missing cpio kernel build dependencies, show error when kernel build fails
+  - 2020-02-17: HADK RPMs are no longer installed by default, everything should be governed by BuildRequires.
+  - 2020-02-23: Simplify port build for Xperias due to hw:common repo, Set minimum SFOS version for ports to 4.3.0.15
+  - 2020-03-12: Fix random SIM detection
+  - 2020-03-12: Update known issues audio and sensor issues are fixed, both SIM slots work, video recording works now
+  - 2020-03-31: Document screen brightness issue when using automatic brightness setting and disabling of sensors of tele and uwide lenses
+
 
 ## Building
 
